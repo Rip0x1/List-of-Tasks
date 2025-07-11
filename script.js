@@ -136,6 +136,12 @@ function completeAll() {
     renderTasks();
 }
 
+function clearCompleted() {
+    tasks = tasks.filter(task => !task.completed);
+    saveTasks();
+    renderTasks();
+}
+
 taskInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') addTask();
 });

@@ -28,6 +28,9 @@ input, select {
     border-radius: 4px;
     flex: 1;
 }
+input::placeholder {
+    color: #000; 
+}
 button {
     padding: 8px 12px;
     border: none;
@@ -89,6 +92,9 @@ body.dark input, body.dark select {
     background: #666;
     color: #fff;
     border-color: #888;
+}
+body.dark input::placeholder {
+    color: #fff; 
 }
 body.dark #taskCount {
     color: #ccc;
