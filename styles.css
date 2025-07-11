@@ -48,6 +48,7 @@ button:hover {
 #taskCount {
     font-size: 14px;
     color: #555;
+    align-content: center;
 }
 ul {
     list-style: none;
