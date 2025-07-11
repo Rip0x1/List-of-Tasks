@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список задач</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Список задач</h1>
+        <div class="input-section">
+            <input type="text" id="taskInput" placeholder="Введите задачу">
+            <select id="categorySelect">
+                <option value="Работа">Работа</option>
+                <option value="Личное">Личное</option>
+                <option value="Другое">Другое</option>
+            </select>
+            <button onclick="addTask()">Добавить</button>
+        </div>
+        <div class="filter-section">
+            <button onclick="filterTasks('all')">Все</button>
+            <button onclick="filterTasks('active')">Активные</button>
+            <button onclick="filterTasks('completed')">Выполненные</button>
+            <span id="taskCount">Активных задач: 0</span>
+        </div>
+        <ul id="taskList"></ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
