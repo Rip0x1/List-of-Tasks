@@ -1,11 +1,14 @@
 const taskInput = document.getElementById('taskInput');
 const categorySelect = document.getElementById('categorySelect');
+const searchInput = document.getElementById('searchInput');
 const taskList = document.getElementById('taskList');
 const taskCount = document.getElementById('taskCount');
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 let filter = 'all';
+let searchQuery = '';
 
 renderTasks();
+loadTheme();
 
 function addTask() {
     const taskText = taskInput.value.trim();
@@ -30,9 +33,9 @@ function addTask() {
 function renderTasks() {
     taskList.innerHTML = '';
     let filteredTasks = tasks.filter(task => {
-        if (filter === 'active') return !task.completed;
-        if (filter === 'completed') return task.completed;
-        return true;
+        const matchesFilter = filter === 'all' || (filter === 'active' && !task.completed) || (filter === 'completed' && task.completed);
+        const matchesSearch = task.text.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesFilter && matchesSearch;
     });
 
     filteredTasks.forEach(task => {
@@ -41,7 +44,7 @@ function renderTasks() {
 
         li.innerHTML = `
             <span>${task.text}</span>
-            <span class="category">[${task.category}]</span>
+            <span class="category category-${task.category}">[${task.category}]</span>
         `;
 
         const completeBtn = document.createElement('button');
@@ -102,6 +105,11 @@ function filterTasks(type) {
     renderTasks();
 }
 
+searchInput.addEventListener('input', () => {
+    searchQuery = searchInput.value;
+    renderTasks();
+});
+
 function saveTasks() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
@@ -109,6 +117,23 @@ function saveTasks() {
 function updateTaskCount() {
     const activeCount = tasks.filter(task => !task.completed).length;
     taskCount.textContent = `Активных задач: ${activeCount}`;
+}
+
+function toggleTheme() {
+    document.body.classList.toggle('dark');
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
+
+function loadTheme() {
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark');
+    }
+}
+
+function completeAll() {
+    tasks.forEach(task => task.completed = true);
+    saveTasks();
+    renderTasks();
 }
 
 taskInput.addEventListener('keypress', (e) => {

@@ -5,6 +5,7 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     padding: 20px;
+    transition: background-color 0.3s;
 }
 .container {
     width: 100%;
@@ -14,8 +15,9 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, color 0.3s;
 }
-.input-section {
+.input-section, .search-section, .filter-section, .settings {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
@@ -38,10 +40,7 @@ button:hover {
     background: #0056b3;
 }
 .filter-section {
-    display: flex;
-    gap: 10px;
     justify-content: center;
-    margin-bottom: 20px;
 }
 #taskCount {
     font-size: 14px;
@@ -66,14 +65,36 @@ li {
 }
 .category {
     font-size: 12px;
-    color: #777;
+    padding: 2px 5px;
+    border-radius: 3px;
 }
+.category-Работа { background: #ffe5e5; }
+.category-Личное { background: #e5f4ff; }
+.category-Другое { background: #e5ffe5; }
 .edit-input {
     flex: 1;
     padding: 5px;
 }
+body.dark {
+    background-color: #333;
+}
+body.dark .container {
+    background: #444;
+    color: #fff;
+}
+body.dark li {
+    background: #555;
+}
+body.dark input, body.dark select {
+    background: #666;
+    color: #fff;
+    border-color: #888;
+}
+body.dark #taskCount {
+    color: #ccc;
+}
 @media (max-width: 600px) {
-    .input-section, .filter-section {
+    .input-section, .search-section, .filter-section, .settings {
         flex-direction: column;
     }
     button, input, select {

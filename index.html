@@ -9,6 +9,10 @@
 <body>
     <div class="container">
         <h1>Список задач</h1>
+        <div class="settings">
+            <button onclick="toggleTheme()">Светлая/Темная тема</button>
+            <button onclick="completeAll()">Отметить все</button>
+        </div>
         <div class="input-section">
             <input type="text" id="taskInput" placeholder="Введите задачу">
             <select id="categorySelect">
@@ -17,6 +21,9 @@
                 <option value="Другое">Другое</option>
             </select>
             <button onclick="addTask()">Добавить</button>
+        </div>
+        <div class="search-section">
+            <input type="text" id="searchInput" placeholder="Поиск задач...">
         </div>
         <div class="filter-section">
             <button onclick="filterTasks('all')">Все</button>
